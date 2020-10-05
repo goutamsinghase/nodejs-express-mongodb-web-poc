@@ -1,0 +1,22 @@
+extends layout
+
+block content
+
+  if registrations.length
+    table.listing-table.table-dark.table-striped
+      tr
+        th Name
+        th Email
+        th Action
+      each registration in registrations
+        tr
+          td= registration.name
+          td= registration.email
+          td
+            form(action="/"+registration.email method="POST")
+              input(type='text' class='hidden' value=registration.email)
+              button(type="submit" class='mt-1 btn btn-primary') Delete
+  else
+    p No registrations yet
+
+  a(href='/registration' class='mt-20 btn btn-primary') Add Member
